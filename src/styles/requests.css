@@ -1,0 +1,16 @@
+.list-container:nth-child(even) {background: rgb(241, 248, 250)}
+.list-container:nth-child(odd) {background: rgb(101, 182, 207)}
+
+
+.list-container {
+    max-width: 80%;
+    padding: 20px;
+}
+
+.list-item {
+    display: flex;
+    margin: 15px 0;
+}
+.request__delete {
+    padding-left: 15px;
+}

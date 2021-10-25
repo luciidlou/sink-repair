@@ -1,0 +1,43 @@
+.field {
+    display: flex;
+    flex-direction: column;
+    padding-right: 15%;
+}
+.label {
+    font-size: larger;
+}
+#submitRequest {
+    position: relative;
+    background-color: #32a2e4;
+    border: none;
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-top: 30px;
+    /* padding: 20px; */
+    width: 200px;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  #submitRequest:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+  
+  #submitRequest:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
