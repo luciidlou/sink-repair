@@ -1,27 +1,36 @@
 {
-  "plumbers": [],
+  "plumbers": [
+    {
+      "id": 1,
+      "name": "Maude"
+    },
+    {
+      "id": 1,
+      "name": "Merle"
+    }
+  ],
   "completions": [],
   "requests": [
     {
-      "id": 1,
-      "description": "Aut sint voluptatem fugit eius quas molestiae modi.",
-      "address": "34445 Bianka Ports",
-      "budget": 400,
-      "neededBy": "2021-08-27"
+      "description": "Leaky sink",
+      "address": "2087 Wilkshire Way",
+      "budget": "320.00",
+      "neededBy": "2021-10-28",
+      "id": 1
     },
     {
-      "description": "My shower has no water pressure",
-      "address": "555 Shenedoah Court.",
-      "budget": "250.00",
+      "description": "Water pressure issue",
+      "address": "300 Anya Court",
+      "budget": "230.00",
       "neededBy": "2021-11-04",
-      "id": 3
+      "id": 2
     },
     {
-      "description": "My sink is leaking",
-      "address": "231 Wallaby Way",
-      "budget": "400.00",
-      "neededBy": "2021-11-06",
-      "id": 4
+      "description": "No water at all",
+      "address": "569 Derby Lane",
+      "budget": "1000.00",
+      "neededBy": "2021-10-27",
+      "id": 3
     }
   ]
 }

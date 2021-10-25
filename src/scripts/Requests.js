@@ -1,4 +1,4 @@
-import { deleteRequest, getRequests } from "./dataAccess.js"
+import { deleteRequest, getRequests, getPlumbers } from "./dataAccess.js"
 
 
 // In the following code, you will need to define the function that will be passed to the map() method.
@@ -11,33 +11,46 @@ import { deleteRequest, getRequests } from "./dataAccess.js"
 
 
 const convertRequestToListElement = (array) => {
-    // const requests = getRequests()
+    const plumbers = getPlumbers()
     return `<li class="list-item">
-            Request # ${array.id} needs to be serviced at "${array.address}" has a budget of $${array.budget}, and needs to be done by ${array.neededBy}.
+            Request # ${array.id} is described as "${array.description}". It needs to be serviced at "${array.address}". It has a budget of $${array.budget}, and needs to be done by ${array.neededBy}.
             <button class="request__delete" id="request--${array.id}">Delete</button>
             </li>
+
+            <select class="plumbers" id="plumbers">
+                <option value="">Choose</option>
+                    ${plumbers.map(
+        plumber => {
+            return `<option value="${array.id}--${plumber.id}">${plumber.name}</option>`
+        }
+    ).join("")
+        }
+            </select>
     `
 }
 
 export const Requests = () => {
     const requests = getRequests()
-    
     let html = `
     <ul class="list-container">
-    ${
-        requests.map(convertRequestToListElement)
-    }
+    ${requests.map(convertRequestToListElement)
+        }
     </ul>
     `
-    
+
     return html
 }
+
 
 const mainContainer = document.querySelector("#container")
 
 mainContainer.addEventListener("click", click => {
     if (click.target.id.startsWith("request--")) {
-        const [,requestId] = click.target.id.split("--")
+        const [, requestId] = click.target.id.split("--")
         deleteRequest(parseInt(requestId))
     }
 })
+
+
+
+

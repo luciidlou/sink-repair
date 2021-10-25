@@ -1,4 +1,4 @@
-import { fetchRequests } from "./dataAccess.js"
+import { fetchData } from "./dataAccess.js"
 import { SinkRepair } from "./SinkRepair.js"
 
 
@@ -8,7 +8,7 @@ const mainContainer = document.querySelector("#container")
 // before you can convert the data structures to HTML representations.
 
 const render = () => {
-    fetchRequests().then(
+    fetchData().then(
         () => {
             mainContainer.innerHTML = SinkRepair()
         }
