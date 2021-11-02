@@ -34,7 +34,6 @@
     opacity: 0;
     transition: all 0.8s
   }
-  
   #submitRequest:active:after {
     padding: 0;
     margin: 0;

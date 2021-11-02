@@ -1,18 +1,42 @@
-.list-container:nth-child(even) {background: rgb(241, 248, 250)}
-.list-container:nth-child(odd) {background: rgb(101, 182, 207)}
+/* .list-container:nth-child(even) {background: rgb(241, 248, 250)}
+.list-container:nth-child(odd) {background: rgb(77, 165, 192)} */
 
 
 .list-container {
-    max-width: 80%;
-    padding: 20px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
 }
-
+.request-header {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
 .list-item {
     display: flex;
-    margin: 15px 0;
+    justify-content: space-between;
+}
+.list-item__request {
+    display: flex;
+    justify-content: space-between;
+    background: rgb(119, 182, 211);
+    padding: 15px;
+}
+.list-item__completed {
+    display: flex;
+    justify-content: space-between;
+    background: rgb(207, 102, 123);
+    padding: 15px 0;
 }
 .request__delete {
-    margin-left: 15px;
-    width: 150px;
+    margin: 15px;
+    width: 100px;
+    height: min-content;
+}
+#plumbers {
+    margin: 15px;
+    width: 100px;
     height: min-content;
 }

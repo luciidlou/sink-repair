@@ -1,4 +1,4 @@
-import { deleteRequest, getRequests, getPlumbers } from "./dataAccess.js"
+import { deleteRequest, getRequests, getPlumbers, saveCompletion, getCompletions } from "./dataAccess.js"
 
 
 // In the following code, you will need to define the function that will be passed to the map() method.
@@ -10,30 +10,45 @@ import { deleteRequest, getRequests, getPlumbers } from "./dataAccess.js"
 // to requests.map(convertRequestToListElement).
 
 
-const convertRequestToListElement = (array) => {
+const convertRequestToListElement = (request) => {
     const plumbers = getPlumbers()
-    return `<li class="list-item">
-            Request # ${array.id} is described as "${array.description}". It needs to be serviced at "${array.address}". It has a budget of $${array.budget}, and needs to be done by ${array.neededBy}.
-            <button class="request__delete" id="request--${array.id}">Delete</button>
-            </li>
+    const completions = getCompletions()
 
-            <select class="plumbers" id="plumbers">
+    const foundCompletion = completions.find(completion => {
+        const requestId = completion.requestId
+        return parseInt(requestId) === request.id
+    })
+
+    if (foundCompletion) {
+        return `<li class="list-item__completed">
+                ${request.description}
+                <button class="request__delete" id="request--${request.id}">Delete</button>
+                </li>
+        `
+    }
+    else {
+        return `<li class="list-item__request">
+                ${request.description}
+                <select class="plumbers" id="plumbers">
                 <option value="">Choose</option>
-                    ${plumbers.map(
-        plumber => {
-            return `<option value="${array.id}--${plumber.id}">${plumber.name}</option>`
-        }
-    ).join("")
-        }
-            </select>
-    `
+                ${plumbers.map(
+                    plumber => {
+                        return `<option value="${request.id}--${plumber.id}">${plumber.name}</option>`
+                    }
+                    ).join("")
+                }
+                </select>
+                <button class="request__delete" id="request--${request.id}">Delete</button>
+                </li>
+        `
+    }
 }
 
 export const Requests = () => {
     const requests = getRequests()
     let html = `
     <ul class="list-container">
-    ${requests.map(convertRequestToListElement)
+    ${requests.map(convertRequestToListElement).join("")
         }
     </ul>
     `
@@ -50,6 +65,36 @@ mainContainer.addEventListener("click", click => {
         deleteRequest(parseInt(requestId))
     }
 })
+
+
+mainContainer.addEventListener(
+    "change",
+    (event) => {
+        const date = new Date()
+        if (event.target.id === "plumbers") {
+            const [requestId, plumberId] = event.target.value.split("--")
+
+            /*
+                This object should have 3 properties
+                   1. requestId
+                   2. plumberId
+                   3. date_created
+            */
+            const completion = {
+                requestId: requestId,
+                plumberId: plumberId,
+                date_created: date
+            }
+
+            /*
+                Invoke the function that performs the POST request
+                to the `completions` resource for your API. Send the
+                completion object as a parameter.
+             */
+            saveCompletion(completion)
+        }
+    }
+)
 
 
 

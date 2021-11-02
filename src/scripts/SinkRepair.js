@@ -1,4 +1,4 @@
-import { Completions } from "./Completions.js"
+// import { Completions } from "./Completions.js"
 import { Requests } from "./Requests.js"
 import { ServiceForm } from "./ServiceForm.js"
 
@@ -11,8 +11,11 @@ export const SinkRepair = () => {
 
     <section class="serviceRequests">
         <h2>Service Requests</h2>
+        <div class="request-header">
+            <h3>Description</h3>
+            <h3>Completed By</h3>
+        </div>
         ${Requests()}
-        ${Completions()}
     </section>
     `
 }

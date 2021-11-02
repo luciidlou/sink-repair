@@ -19,6 +19,7 @@ render()
 
 mainContainer.addEventListener("stateChanged",
     CustomEvent => {
+        console.log("State change detected! Regenerating HTML...")
         render()
     }
 )
